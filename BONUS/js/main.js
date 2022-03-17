@@ -2,7 +2,6 @@ const app = new Vue({
   el: "#app",
   data: {
     currentIndex: 0,
-    player: null,
     images: [
       {
         img: "img/01.jpg",
@@ -42,15 +41,9 @@ const app = new Vue({
     prev() {
       this.currentIndex--;
 
-      if (this.currentIndex < 0) this.currentIndex = this.images.length - 1;
-    },
-
-    start() {
-      this.player = setTimeout(next, 3000);
-    },
-
-    stop() {
-      clearInterval(this.player);
+      if (this.currentIndex < 0) {
+        this.currentIndex = this.images.length - 1;
+      }
     },
   },
 });
