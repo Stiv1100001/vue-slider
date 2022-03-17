@@ -2,7 +2,11 @@ const app = new Vue({
   el: "#app",
   data: {
     currentIndex: 0,
-    player: null,
+    newImage: {
+      img: null,
+      title: null,
+      text: null,
+    },
     images: [
       {
         img: "img/01.jpg",
@@ -42,7 +46,36 @@ const app = new Vue({
     prev() {
       this.currentIndex--;
 
-      if (this.currentIndex < 0) this.currentIndex = this.images.length - 1;
+      if (this.currentIndex < 0) {
+        this.currentIndex = this.images.length - 1;
+      }
+    },
+
+    start() {
+      this.player = setTimeout(this.next, 3000);
+    },
+
+    stop() {
+      clearInterval(this.player);
+    },
+
+    shuffle() {
+      this.images = this.images
+        .map((value) => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+    },
+
+    add() {
+      this.images.push({
+        img: this.newImage.img,
+        title: this.newImage.title,
+        text: this.newImage.text,
+      });
+
+      this.newImage.img = null;
+      this.newImage.title = null;
+      this.newImage.text = null;
     },
   },
 });
