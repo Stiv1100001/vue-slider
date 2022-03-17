@@ -44,13 +44,5 @@ const app = new Vue({
 
       if (this.currentIndex < 0) this.currentIndex = this.images.length - 1;
     },
-
-    start() {
-      this.player = setTimeout(next, 3000);
-    },
-
-    stop() {
-      clearInterval(this.player);
-    },
   },
 });

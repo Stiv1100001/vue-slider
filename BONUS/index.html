@@ -25,17 +25,17 @@
     <!-- Vue -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.common.dev.min.js"></script>
   </head>
-  <body>
+  <body class="bg-dark">
     <main id="app">
       <div class="container p-3">
         <div class="row">
           <!-- Title -->
-          <div class="col-12 mb-3 text-center">
+          <div class="col-12 mb-3 py-2 text-center bg-white rounded-3">
             <h2>Vue Awesome Slider</h2>
           </div>
 
           <!-- Cover Image -->
-          <div class="col-12 mb-3" @mouseover="stop()" @mouseleave="start()">
+          <div class="col-12 mb-3 p-0" @mouseover="stop()" @mouseleave="start()">
             <div id="cover-container" class="position-relative">
               <img
                 id="cover-img"
@@ -48,7 +48,7 @@
             </div>
           </div>
 
-          <div class="col-12 mb-3">
+          <div class="col-12 mb-5 p-0 bg-white border-5">
             <div id="images-container" class="position-relative">
               <img
                 v-for="(image, index) in images"
@@ -77,8 +77,37 @@
             </div>
           </div>
 
-          <div class="col-12 text-center">
-            <button class="btn btn-primary" @click="start()">Autoplay</button>
+          <div class="col-12 text-center mb-5">
+            <button class="btn btn-primary me-2" @click="start()">Autoplay</button>
+            <button class="btn btn-danger" @click="shuffle()">Mischia</button>
+          </div>
+
+          <div class="col-12 rounded-3 p-3">
+            <div
+              id="form"
+              class="mx-auto p-4 rounded-3 d-flex flex-column justify-content-around align-items-center w-50 bg-white"
+            >
+              <h4 class="text-center mb-2">Insert new carousel image</h4>
+              <input
+                placeholder="Image"
+                v-model="newImage.img"
+                type="text"
+                class="form-control mb-2"
+              />
+              <input
+                placeholder="Title"
+                v-model="newImage.title"
+                type="text"
+                class="form-control mb-2"
+              />
+              <input
+                placeholder="Text"
+                v-model="newImage.text"
+                type="text"
+                class="form-control mb-2"
+              />
+              <button class="btn btn-danger" @click="add()">Add</button>
+            </div>
           </div>
         </div>
       </div>
